@@ -1,0 +1,19 @@
+#!/bin/bash
+#SBATCH --job-name=cnguy_stringtie
+#SBATCH --mail-type=ALL
+#SBATCH --mail-user=cnguy230@ucsc.edu
+#SBATCH -o stringout.out-%j
+#SBATCH -e stringerr.err-%j
+#SBATCH -n 20
+#SBATCH --mem=1G
+
+module load stringtie
+
+stringtie STARalignment_femaleAligned.out.sorted.bam -e -G gencode.v37.annotation.gtf -o stringstarout_female.gtf
+stringtie STARalignment_maleAligned.out.sorted.bam -e -G gencode.v37.annotation.gtf -o stringstarout_male.gtf
+
+stringtie HISATalignment_femaleAligned.out.sorted.bam -e -G gencode.v37.annotation.gtf -o stringhisatout_female.gtf
+stringtie HISATalignment_maleAligned.out.sorted.bam -e -G gencode.v37.annotation.gtf -o stringhisatout_male.gtf
+
+stringtie TOPHATalignment_femaleAligned.out.bam -e -G gencode.v37.annotation.gtf -o stringtopout_female.gtf
+stringtie TOPHATalignment_maleAligned.out.bam -e -G gencode.v37.annotation.gtf -o stringtopout_male.gtf

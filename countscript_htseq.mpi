@@ -1,0 +1,23 @@
+#!/bin/bash
+#SBATCH --job-name=cnguy_htseq
+#SBATCH --mail-user=cnguy230@ucsc.edu
+#SBATCH --mail-type=ALL
+#SBATCH -e hterr.err-%j
+#SBATCH -n 20
+#SBATCH --mem=1G
+
+
+# run software for each of the 3 outputs of alignment
+
+htseq-count -o starfemalecount STARalignment_femaleAligned.out.sorted.bam gencode.v37.annotation.gtf > star.female.htout.txt
+htseq-count -o starmalecount STARalignment_maleAligned.out.sorted.bam gencode.v37.annotation.gtf > star.male.htout.txt
+
+htseq-count -o hisatfemalecount HISATalignment_femaleAligned.out.sorted.bam gencode.v37.annotation.gtf > hisat.female.htout.txt
+htseq-count -o hisatmalecount HISATalignment_maleAligned.out.sorted.bam gencode.v37.annotation.gtf > hisat.male.htout.txt
+
+htseq-count -o tophatfemalecount TOPHATalignment_femaleAligned.out.bam gencode.v37.annotation.gtf > tophat.female.htout.txt
+htseq-count -o tophatmalecount TOPHATalignment_maleAligned.out.bam gencode.v37.annotation.gtf > tophat.male.htout.txt
+
+
+
+

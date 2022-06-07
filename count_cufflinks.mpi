@@ -1,0 +1,20 @@
+#!/bin/bash
+#SBATCH --job-name=cnguy_cufflinks
+#SBATCH --mail-type=ALL
+#SBATCH --mail-user=cnguy230@ucsc.edu
+#SBATCH -o cuffout.out-%j
+#SBATCH -e cufferr.err-%j
+#SBATCH -n 20
+#SBATCH --mem=1G
+
+module load cufflinks
+
+cufflinks -G gencode.v37.annotation.gtf TOPHATalignment_femaleAligned.out.bam -o ./cufflinks_tophat_female
+cufflinks -G gencode.v37.annotation.gtf TOPHATalignment_maleAligned.out.bam -o ./cufflinks_tophat_male
+
+cufflinks -G gencode.v37.annotation.gtf STARalignment_femaleAligned.out.sorted.bam -o ./cufflinks_star_female
+cufflinks -G gencode.v37.annotation.gtf STARalignment_maleAligned.out.sorted.bam -o ./cufflinks_star_male
+
+cufflinks -G gencode.v37.annotation.gtf HISATalignment_femaleAligned.out.sorted.bam -o ./cufflinks_hisat_female
+cufflinks -G gencode.v37.annotation.gtf HISATalignment_maleAligned.out.sorted.bam -o ./cufflinks_hisat_male
+
