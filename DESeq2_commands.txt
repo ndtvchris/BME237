@@ -1,0 +1,47 @@
+# First we had to create a virtual env on hummingbird and install DESeq2
+
+# load conda
+
+# Module load miniconda3.9
+
+# Make virtual env
+
+# conda create -n DESeq2
+
+# conda activate DESeq2
+
+# add bioconda channel
+
+# conda config --add channels bioconda
+
+# now you can install DESeq2
+
+# mamba install bioconductor-deseq2
+
+# We can now run DESeq2
+
+# load DESeq2
+library("DESeq2")
+# path to directory
+directory <- "/hb/home/imir/BME237/PS2/htseq"
+# sample files
+sampleFiles <- c('Star_HTseq_female.out', 'Star_HTseq_male.out')
+# conditions
+condition <- c('Female', 'male')
+# sample table
+sampleTable <- data.frame(
+                        sampleName = sampleFiles,
+                        fileName = sampleFiles,
+                        condition = condition
+                        )
+# run DESeq2
+ddsHTSeq <- DESeqDataSetFromHTSeqCount(
+                                sampleTable = sampleTable,
+                                directory = directory,
+                                design = ~ condition
+                                )
+# get data frame/results
+dds <- DESeq(ddsHTSeq)
+res <- results(dds)
+# order by normalized pValue
+res <- res[order(res$padj),]
