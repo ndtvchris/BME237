@@ -1,0 +1,35 @@
+# awk '$2 > 0' hisat.female.htout_trimmed.txt | wc -l
+20097
+
+# awk '$2 > 0' hisat.male.htout_trimmed.txt | wc -l
+18572
+
+# awk '$2 > 0' star.female.htout_trimmed.txt | wc -l
+19737
+
+# awk '$2 > 0' star.male.htout_trimmed.txt | wc -l
+18323
+
+# awk '$2 > 0' tophat.female.htout_trimmed.txt | wc -l
+20269
+
+# awk '$2 > 0' tophat.male.htout_trimmed.txt | wc -l
+18698
+
+# tail -60651 hisat.female.rsub.counts.txt | awk '$2 > 0' | wc -l
+21541
+
+# tail -60651 hisat.male.rsub.counts.txt | awk '$2 > 0' | wc -l
+19762
+
+# tail -60651 star.female.rsub.counts.txt | awk '$2 > 0' | wc -l
+20961
+
+# tail -60651 star.male.rsub.counts.txt | awk '$2 > 0' | wc -l
+19308
+
+# tail -60651 tophat.female.rsub.counts.txt | awk '$2 > 0' | wc -l
+21660
+
+# tail -60651 topcoat.male.rsub.counts.txt | awk ‘$2 > 0' | wc -l
+19802
